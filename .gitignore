@@ -66,7 +66,7 @@ coverage.xml
 docs/_build/
 
 # PyBuilder
-target/
+#target/
 
 # pyenv
 .python-version
