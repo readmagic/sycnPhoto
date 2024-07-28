@@ -1,6 +1,6 @@
 from syncPhoto.target.photoPrism.PPClient import PPClient
 import os
-from syncPhoto.Config import PP_USERNAME, PP_PASSWORD, PP_BASE_URL, PP_ALBUM_NAME
+
 
 
 def _delete_file(filename):
@@ -8,19 +8,19 @@ def _delete_file(filename):
         os.remove(filename)
 
 
-def sync_photo(photo_paths):
-    ppClient = PPClient(PP_USERNAME, PP_PASSWORD, PP_BASE_URL)
+def sync_photo(photo_paths,username,password,base_url,ablum_name):
+    ppClient = PPClient(username, password, base_url)
     user_id = ppClient.get_uid()
     albums = ppClient.get_albums()
     exist = False
     album_id = None
     for album in albums:
-        if album['Title'] == PP_ALBUM_NAME:
+        if album['Title'] == ablum_name:
             exist = True
             album_id = album['UID']
             break
     if exist is False:
-        album = ppClient.create_album(PP_ALBUM_NAME)
+        album = ppClient.create_album(ablum_name)
         album_id = album['UID']
 
     for photo_path in photo_paths:

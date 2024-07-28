@@ -1,21 +1,19 @@
 import time
 import json
 import os
-
 import re
 
 from syncPhoto.source.mi import Util
 from syncPhoto.source.mi.MiClient import MiClient
-from syncPhoto.Config import MI_USERNAME,MI_PASSWORD,MI_DEVICE_ID,SYNC_DIR
 
 _domain = 'https://i.mi.com/gallery'
 
 
 class INIT:
 
-    def __init__(self):
-        connector = MiClient(MI_USERNAME, MI_PASSWORD, MI_DEVICE_ID)
-        self.sync_dir = SYNC_DIR
+    def __init__(self, username, password, device_id, sync_dir):
+        connector = MiClient(username, password, device_id)
+        self.sync_dir = sync_dir
         self.logged = connector.login()
         self.connector = connector
         self.s = connector._session
@@ -24,6 +22,7 @@ class INIT:
         self._prepare_gallery()
 
         # 跟踪浏览器记录，访问相册前，都会执行
+
     def _prepare_gallery(self):
         url = _domain + '/user/lite/index/prepare'
         headers = {
