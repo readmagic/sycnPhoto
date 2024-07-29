@@ -19,11 +19,11 @@ if __name__ == '__main__':
         device_id = account['device_id']
         sync_album_name = account['sync_album_name']
         sync_dir = account['sync_dir']
-        if len(sync_dir) != 0 and not os.path.isdir(Config.SYNC_DIR):
+        if len(sync_dir) != 0 and not os.path.isdir(sync_dir):
             os.mkdir(sync_dir)
         source_helper = SourceHelper.INIT(username, password, device_id, sync_dir)
         photo_paths = source_helper.sync_photo()
         print(photo_paths)
         # todo 1、已经上传的不需要上传 2、AI识别需要上传的照片
         TargetHelper.sync_photo(photo_paths=photo_paths, username=Config.PP_USERNAME, password=Config.PP_PASSWORD,
-                                base_url=Config.PP_BASE_URL, sync_dir=sync_album_name)
+                                base_url=Config.PP_BASE_URL, ablum_name=sync_album_name)
