@@ -1,6 +1,6 @@
-from syncPhoto.target.photoPrism.PPClient import PPClient
 import os
 
+from target.photoPrism.PPClient import PPClient
 
 
 def _delete_file(filename):

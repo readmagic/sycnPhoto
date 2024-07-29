@@ -3,8 +3,8 @@ import json
 import os
 import re
 
-from syncPhoto.source.mi import Util
-from syncPhoto.source.mi.MiClient import MiClient
+from source.mi import Util
+from source.mi.MiClient import MiClient
 
 _domain = 'https://i.mi.com/gallery'
 
